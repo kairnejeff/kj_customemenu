@@ -1,0 +1,34 @@
+kj_product_carrousel_edit:
+  path: /kj_product-carrousel/edit/{productId}/{carrouselId}
+  methods: [GET, POST]
+  defaults:
+    productId: 1
+    carrouselId: 1
+    _controller: 'PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController::editAction'
+    _legacy_controller: 'ProductCarrouselControllerEdit'
+    _legacy_link: 'ProductCarrouselControllerEdit'
+  requirements:
+    productId: \d+
+
+kj_product_carrousel_delete:
+  path: /kj_product-carrousel/delete/{productId}/{carrouselId}
+  methods: [GET,DELETE]
+  defaults:
+    productId: 1
+    carrouselId: 1
+    _controller: 'PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController::deleteAction'
+    _legacy_controller: 'ProductCarrouselControllerDelete'
+    _legacy_link: 'ProductCarrouselControllerDelete'
+  requirements:
+    productId: \d+
+
+kj_product_carrousel_add:
+  path: /kj_product-carrousel/add/{productId}
+  methods: [GET, POST]
+  defaults:
+    productId: 1
+    _controller: 'PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController::addAction'
+    _legacy_controller: 'ProductCarrouselControllerAdd'
+    _legacy_link: 'ProductCarrouselControllerAdd'
+  requirements:
+    productId: \d+

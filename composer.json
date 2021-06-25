@@ -1,0 +1,20 @@
+{
+  "name": "prestashop/kj_productcarrousel",
+  "description": "description",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Jing LEI",
+      "email": "email@example.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PrestaShop\\Module\\ProductCarrousel\\": "src/"
+    },
+    "config": {
+      "prepend-autoloader": false
+    },
+    "type": "prestashop-module"
+  }
+}
