@@ -29,9 +29,15 @@ class ProductCarrousel
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",nullable=true)
      */
     private $file_name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $nom;
 
     /**
      * @var int
@@ -147,5 +153,32 @@ class ProductCarrousel
         $this->active = $active;
     }
 
+    /**
+     * @return string
+     */
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom(string $nom): void
+    {
+        $this->nom = $nom;
+    }
+
+
+    public function toArray() {
+        return [
+            'id' => $this->getId(),
+            'fileName' => $this->getFileName(),
+            'nom' => $this->getNom(),
+            'active' =>$this->isActive(),
+            'position' =>$this->getPosition(),
+            'description'=>$this->getDescription()
+        ];
+    }
 
 }

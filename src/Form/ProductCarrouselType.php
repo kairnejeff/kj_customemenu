@@ -4,6 +4,7 @@ namespace PrestaShop\Module\ProductCarrousel\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,12 +31,15 @@ class ProductCarrouselType extends AbstractType
                     ])
                 ],
             ])
-            ->add('file_name', TextType::class, [
+            ->add('nom', TextType::class, [
                 'label' => 'Name',
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description',
             ])
+            ->add('save', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary'],
+            ]);
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

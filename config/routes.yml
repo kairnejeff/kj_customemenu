@@ -5,10 +5,8 @@ kj_product_carrousel_edit:
     productId: 1
     carrouselId: 1
     _controller: 'PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController::editAction'
-    _legacy_controller: 'ProductCarrouselControllerEdit'
-    _legacy_link: 'ProductCarrouselControllerEdit'
-  requirements:
-    productId: \d+
+    _legacy_controller: ProductCarrouselController
+    _legacy_link: ProductCarrouselController:edit
 
 kj_product_carrousel_delete:
   path: /kj_product-carrousel/delete/{productId}/{carrouselId}
@@ -17,10 +15,11 @@ kj_product_carrousel_delete:
     productId: 1
     carrouselId: 1
     _controller: 'PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController::deleteAction'
-    _legacy_controller: 'ProductCarrouselControllerDelete'
-    _legacy_link: 'ProductCarrouselControllerDelete'
+    _legacy_controller: ProductCarrouselController
+    _legacy_link: ProductCarrouselController:delete
   requirements:
     productId: \d+
+    carrouselId: \d+
 
 kj_product_carrousel_add:
   path: /kj_product-carrousel/add/{productId}

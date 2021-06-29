@@ -23,7 +23,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 <div class="m-b-1 m-t-1">
-
 <div class="panel"><h2><i class="icon-list-ul"></i> {l s='Slides list' d='Modules.kj_productcarrousel.Admin'}
         <span class="panel-heading-action">
 		<a id="desc-product-new" class="list-toolbar-btn" href="{$link->getAdminLink('ProductCarrouselControllerAdd',true,array(),["productId"=>"{$productId}"])}">
@@ -35,37 +34,46 @@
     </h2>
     <div id="carrouselContent">
         <div id="carrousels">
-           {* {foreach from=$carrousels item=carrousel}
-                <div id="carrouses_{$carrousel.id}" class="panel">
-                    <div class="row">
-                        <div class="col-lg-1">
-                            <span><i class="icon-arrows "></i></span>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{$image_baseurl}{$carrousel.id}" alt="{$carrousel.file_name}" class="img-thumbnail" />
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="pull-left">
-                                {$carrouse.file_name}
-                            </h4>
-                            <div class="btn-group-action pull-right">
-                                {$carrousel.active}
+            {if !empty($carrousels)}
+                {foreach from=$carrousels item=carrousel}
+                    <div id="carrouses_{$carrousel.id}" class="panel">
+                        <div class="row">
+                            <div class="col-lg-1">
+                                <span><i class="icon-arrows "></i></span>
+                            </div>
+                            <div class="col-md-3">
+                                {assign var="name" value="."|explode:$carrousel.fileName}
+                                {if $name[1]|in_array:$img}
+                                    <img src="{$image_baseurl}{$carrousel.fileName}" alt="{$carrousel.nom}" class="img-thumbnail" />
+                                {elseif $name[1]|in_array:$video}
+                                    <video controls width="150">
+                                        <source src="{$image_baseurl}{$carrousel.fileName}" type="video/mp4">
+                                    </video>
+                                {/if}
 
-                                <a class="btn btn-default"
-                                   href="{$link->getModuleLink('kj_productcarrousel',"edit",array(), true)/{$productId}/{$carrousel.id}}?_token={$token}">
-                                    <i class="icon-edit"></i>
-                                    {l s='Edit' d='Admin.Actions'}
-                                </a>
-                                <a class="btn btn-default"
-                                   href="{$link->getModuleLink('kj_productcarrousel',"delete",array(), true)/{$productId}/{$carrousel.id}?_token={$token}">
-                                    <i class="icon-trash"></i>
-                                    {l s='Delete' d='Admin.Actions'}
-                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="pull-left">
+                                    {$carrouse.fileName}
+                                </h4>
+                                <div class="btn-group-action pull-right">
+                                    {$carrousel.position}
+                                    <a class="btn btn-default"
+                                       href="{$link->getAdminLink('ProductCarrouselController',true,[],['action' => 'edit',"productId"=>"{$productId}","carrouselId"=>"{$carrousel.id}"])}">
+                                        <i class="icon-edit"></i>
+                                        {l s='Edit' d='Admin.Actions'}
+                                    </a>
+                                    <a class="btn btn-default"
+                                       href="{$link->getAdminLink('ProductCarrouselController',true,[],['action' => 'delete',"productId"=>"{$productId}","carrouselId"=>"{$carrousel.id}"])}">
+                                        <i class="icon-trash"></i>
+                                        {l s='Delete' d='Admin.Actions'}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {/foreach}*}
+                {/foreach}
+            {/if}
         </div>
     </div>
 </div>

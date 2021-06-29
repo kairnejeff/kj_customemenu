@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    public: true
+#Repository
+  prestashop.module.kj_productcarrousel.repository.product_carrousel_repository:
+    class: PrestaShop\Module\ProductCarrousel\Repository
+    factory: [ '@doctrine.orm.default_entity_manager', getRepository ]
+    arguments:
+      - PrestaShop\Module\ProductCarrousel\Entity\ProductCarrousel
+    public: true
+
+#Controller
+  PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController:
+    class: 'PrestaShop\Module\ProductCarrousel\Controller\ProductCarrouselController'
+    arguments:
+      - '@doctrine.orm.default_entity_manager'
+      - '@prestashop.module.kj_productcarrousel.repository.product_carrousel_repository'
