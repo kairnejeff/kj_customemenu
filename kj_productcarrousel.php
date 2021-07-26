@@ -63,10 +63,12 @@ class Kj_ProductCarrousel extends Module
         $sqlInstall = "ALTER TABLE " . _DB_PREFIX_ . "product "
             . "ADD product_carrousel VARCHAR(255) NULL";
         $sqlHook ="INSERT INTO ". _DB_PREFIX_ ."hook (`name`, `title`, `description`) VALUES ('displayProductCaroussel', 'displayProductCaroussel', 'add a hook carrousel to product page')";
+        $sqlHook2 ="INSERT INTO ". _DB_PREFIX_ ."hook (`name`, `title`, `description`) VALUES ('displayCategoryProductCaroussel', 'displayCategoryProductCaroussel', 'add a hook carrousel to product catgeory page')";
         $returnSql = Db::getInstance()->execute($sqlInstall);
         $returnCreateSql=Db::getInstance()->execute($sqlCreate);
         $returnHook=Db::getInstance()->execute($sqlHook);
-        return $returnSql&&$returnCreateSql&&$returnHook ;
+        $returnHook2=Db::getInstance()->execute($sqlHook2);
+        return $returnSql&&$returnCreateSql&&$returnHook&&$returnHook2 ;
     }
 
     /**
