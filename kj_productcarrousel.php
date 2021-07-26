@@ -29,10 +29,15 @@ class Kj_ProductCarrousel extends Module
     public function install()
     {
         if (!parent::install() || !$this->_installSql()
-            || !$this->registerHook([
-                'displayAdminProductsMainStepLeftColumnMiddle',
+            || !$this->registerHook(
+                'displayAdminProductsMainStepLeftColumnMiddle'
+            )
+            ||!$this->registerHook(
                 'displayProductCaroussel'
-            ])
+            )
+            ||!$this->registerHook(
+                'displayCategoryProductCaroussel'
+            )
         ) {
             return false;
         }
@@ -91,6 +96,12 @@ class Kj_ProductCarrousel extends Module
         $variables = $this->_display($params['id_product']);
         $this->context->smarty->assign($variables);
         return $this->display(__FILE__, 'views/templates/hook/frontCaroussel.tpl');
+    }
+    public function hookDisplayCategoryProductCaroussel($params)
+    {
+        $variables = $this->_display($params['id_product']);
+        $this->context->smarty->assign($variables);
+        return $this->display(__FILE__, 'views/templates/hook/frontCategoryCaroussel.tpl');
     }
 
     public function _display($productId){
