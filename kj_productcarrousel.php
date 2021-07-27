@@ -47,7 +47,10 @@ class Kj_ProductCarrousel extends Module
 
     public function uninstall()
     {
-        return parent::uninstall() && $this->_unInstallSql();
+        return parent::uninstall()
+            && $this->_unInstallSql()
+            &&$this->unregisterHook('displayProductCaroussel')
+            &&$this->unregisterHook('displayCategoryProductCaroussel');
     }
 
 
@@ -80,13 +83,9 @@ class Kj_ProductCarrousel extends Module
         $sqlInstall = "ALTER TABLE " . _DB_PREFIX_ . "product "
             . "DROP product_carrousel";
         $sqlDrop = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "product_carrousel ";
-        $sqlDelete= "DELETE FROM " . _DB_PREFIX_. "hook  WHERE `name` = 'displayProductCaroussel'";
-        $sqlDelete2= "DELETE FROM " . _DB_PREFIX_. "hook  WHERE `name` = 'displayCategoryProductCaroussel'";
         $returnSql = Db::getInstance()->execute($sqlInstall);
         $returnDropSql = Db::getInstance()->execute($sqlDrop);
-        $returnDeleteHook = Db::getInstance()->execute($sqlDelete);
-        $returnDeleteHook2 = Db::getInstance()->execute($sqlDelete2);
-        return $returnSql&&$returnDropSql&&$returnDeleteHook&&$returnDeleteHook2;
+        return $returnSql&&$returnDropSql;
     }
 
     public function hookDisplayAdminProductsMainStepLeftColumnMiddle($params) {
